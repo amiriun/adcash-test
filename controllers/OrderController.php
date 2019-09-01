@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use adcash\order\data_contracts\CreateOrderDTO;
+use adcash\order\exceptions\CreatingOrderException;
+use adcash\order\services\CreatingOrderService;
 use Yii;
 use app\models\Order;
 use app\models\OrderSearch;
@@ -64,15 +67,18 @@ class OrderController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Order();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $DTO = new CreateOrderDTO();
+        $DTO->productId = Yii::$app->request->post('product_id');
+        $DTO->userId = Yii::$app->request->post('user_id');
+        $DTO->quantity = Yii::$app->request->post('quantity');
+        $service = new CreatingOrderService($DTO);
+        try {
+            $service->create();
+        } catch (CreatingOrderException $e) {
+        } catch (\Exception $e) {
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->redirect('/');
     }
 
     /**
