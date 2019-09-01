@@ -12,12 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?=Yii::t('app','Add new order')?></h2>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Order'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <?=$this->render('_form', ['model' => $searchModel]);?>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -26,15 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'product_id',
+            'cloned_user_fullname',
+            'cloned_product_name',
             'quantity',
             'price',
-            //'cloned_product_name',
-            //'cloned_user_fullname',
-            //'created_at',
-            //'updated_at',
+            'created_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
