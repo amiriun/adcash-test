@@ -19,7 +19,7 @@ class m190831_192113_create_order_table extends Migration
             'quantity' => $this->integer(3),
             'price' => $this->integer(4),
             'cloned_product_name' => $this->string(40),
-            'cloned_user_fullname' => $this->integer(4),
+            'cloned_user_fullname' => $this->string(40),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
         ]);
