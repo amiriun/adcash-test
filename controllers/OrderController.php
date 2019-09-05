@@ -5,15 +5,14 @@ namespace app\controllers;
 use adcash\order\data_contracts\CreateOrderDTO;
 use adcash\order\exceptions\CreatingOrderException;
 use adcash\order\services\CreatingOrderService;
+use app\models\Order;
+use app\models\OrderSearch;
 use app\models\Product;
 use app\models\User;
 use Yii;
-use app\models\Order;
-use app\models\OrderSearch;
-use yii\helpers\ArrayHelper;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * OrderController implements the CRUD actions for Order model.
@@ -46,8 +45,8 @@ class OrderController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'userDataList' => ArrayHelper::map(User::find()->all(),'id','fullname'),
-            'productDataList' => ArrayHelper::map(Product::find()->all(),'id','name'),
+            'userDataList' => User::instance()->allInUsersForDropdownList(),
+            'productDataList' => Product::instance()->allInDropDownListFormat(),
             'dataProvider' => $dataProvider,
         ]);
     }

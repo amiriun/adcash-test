@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "user".
@@ -54,5 +55,9 @@ class User extends \yii\db\ActiveRecord
     public function getOrders()
     {
         return $this->hasMany(Order::className(), ['user_id' => 'id']);
+    }
+
+    public function allInUsersForDropdownList(){
+        return ArrayHelper::map(User::find()->all(),'id','fullname');
     }
 }
