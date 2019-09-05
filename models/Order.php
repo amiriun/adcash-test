@@ -36,9 +36,10 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'price', 'cloned_user_fullname'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'price'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['cloned_product_name'], 'string', 'max' => 40],
+            [['cloned_user_fullname'], 'string', 'max' => 40],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['product_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
