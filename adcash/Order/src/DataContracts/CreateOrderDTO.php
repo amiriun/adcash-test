@@ -20,8 +20,9 @@ class CreateOrderDTO
         if($this->product){
             return $this->product;
         }
+        $this->product = Product::findOne(['id'=>$this->productId]);
 
-        return Product::findOne($this->productId);
+        return $this->product;
     }
 
     /**
@@ -31,7 +32,8 @@ class CreateOrderDTO
         if($this->user){
             return $this->user;
         }
+        $this->user = User::findOne(['id'=>$this->userId]);
 
-        return User::findOne($this->userId);
+        return $this->user;
     }
 }
