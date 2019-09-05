@@ -5,9 +5,12 @@ namespace app\controllers;
 use adcash\order\data_contracts\CreateOrderDTO;
 use adcash\order\exceptions\CreatingOrderException;
 use adcash\order\services\CreatingOrderService;
+use app\models\Product;
+use app\models\User;
 use Yii;
 use app\models\Order;
 use app\models\OrderSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,6 +46,8 @@ class OrderController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'userDataList' => ArrayHelper::map(User::find()->all(),'id','fullname'),
+            'productDataList' => ArrayHelper::map(Product::find()->all(),'id','name'),
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -68,9 +73,10 @@ class OrderController extends Controller
     public function actionCreate()
     {
         $DTO = new CreateOrderDTO();
-        $DTO->productId = Yii::$app->request->post('product_id');
-        $DTO->userId = Yii::$app->request->post('user_id');
-        $DTO->quantity = Yii::$app->request->post('quantity');
+        $request = Yii::$app->request->post('OrderSearch');
+        $DTO->productId = $request['product_id'];
+        $DTO->userId = $request['user_id'];
+        $DTO->quantity = $request['quantity'];
         $service = new CreatingOrderService($DTO);
         try {
             $service->create();

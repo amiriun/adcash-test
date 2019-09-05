@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model app\models\Order */
+/* @var $form yii\widgets\ActiveForm */
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,7 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <?=$this->render('_form', ['model' => $searchModel]);?>
+            <?php $form = ActiveForm::begin(['action' => 'index.php?r=order/create']); ?>
+            <?=$this->render('_form', ['model' => $searchModel,'form' => $form,'userDataList'=>$userDataList,'productDataList'=>$productDataList]);?>
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
     <br>
