@@ -3,6 +3,8 @@
 
 * Discount rule is located in `params.php` and one can easily change anything in it when it is needed
 
+* I have created my own folder with the name of `/adcash` in the root directory and have put my repositories and services on it.
+
 Here is the online demo link:
 http://adcash.idea197.com/web/index.php?r=order/index
 
