@@ -3,7 +3,7 @@
 
 * Discount rule is located in `params.php` and one can easily change anything in it when it is needed
 
-##Instalation:
+## Instalation:
 * First: configure the db file --> `config/db.php`
 * Second: `composer install`
 * Third: `php yii migrate`
