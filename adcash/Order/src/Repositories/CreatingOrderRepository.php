@@ -34,9 +34,9 @@ class CreatingOrderRepository
         $order->cloned_product_name = $this->createOrderDTO->getProduct()->name;
         $order->cloned_user_fullname = $this->createOrderDTO->getUser()->fullname;
         if (!$order->save()) {
-            $this->decreaseAvailableQuantitiesOfProduct($order->product,$order->quantity);
             throw new CreatingOrderException("There is a problem in saving the order",422);
         }
+        $this->decreaseAvailableQuantitiesOfProduct($order->product,$order->quantity);
     }
 
     /**
@@ -45,6 +45,6 @@ class CreatingOrderRepository
      */
     private function decreaseAvailableQuantitiesOfProduct($product,$orderQuantity)
     {
-        $product->update(false,['available_quantity'=>$product->available_quantity - $orderQuantity]);
+        $product->updateAttributes(['available_quantity'=>$product->available_quantity - $orderQuantity]);
     }
 }
