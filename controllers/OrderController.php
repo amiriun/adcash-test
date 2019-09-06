@@ -43,6 +43,8 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $dataProvider->pagination->pageSize=10;
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'userDataList' => User::instance()->allInUsersForDropdownList(),
