@@ -55,7 +55,7 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'item_price', 'total_price'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'item_price'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['cloned_product_name'], 'string', 'max' => 40],
             [['cloned_user_fullname'], 'string', 'max' => 40],

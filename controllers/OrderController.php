@@ -102,19 +102,18 @@ class OrderController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        $DTO = new OrderDTO();
-        $request = Yii::$app->request->post('OrderSearch');
-        $DTO->productId = $request['product_id'];
-        $DTO->userId = $request['user_id'];
-        $DTO->quantity = $request['quantity'];
-        $service = new UpdatingOrderRepository($DTO,$model);
-        try {
-            $service->update();
-        } catch (OrderException $e) {
-        } catch (\Exception $e) {
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (Yii::$app->request->getIsPost()) {
+            $DTO = new OrderDTO();
+            $request = Yii::$app->request->post('Order');
+            $DTO->productId = $request['product_id'];
+            $DTO->userId = $request['user_id'];
+            $DTO->quantity = $request['quantity'];
+            $service = new UpdatingOrderRepository($DTO,$model);
+            try {
+                $service->update();
+            } catch (OrderException $e) {
+            } catch (\Exception $e) {
+            }
             return $this->redirect(['index']);
         }
 

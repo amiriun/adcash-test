@@ -4,6 +4,8 @@ namespace adcash\order\services;
 use adcash\order\data_contracts\OrderDTO;
 use adcash\order\exceptions\OrderException;
 use adcash\order\repositories\CreatingOrderRepository;
+use adcash\order\repositories\UpdatingOrderRepository;
+use app\models\Order;
 
 class UpdatingOrderService
 {
@@ -11,10 +13,10 @@ class UpdatingOrderService
 
     private $creatingRepository;
 
-    public function __construct(OrderDTO $DTO)
+    public function __construct(OrderDTO $DTO,Order $order)
     {
         $this->orderDTO = $DTO;
-        $this->creatingRepository = new CreatingOrderRepository($DTO);
+        $this->creatingRepository = new UpdatingOrderRepository($DTO,$order);
     }
 
     /**
