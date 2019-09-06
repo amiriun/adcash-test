@@ -21,8 +21,8 @@ class m190831_192113_create_order_table extends Migration
             'total_price' => $this->float(15),
             'cloned_product_name' => $this->string(40),
             'cloned_user_fullname' => $this->string(40),
-            'created_at' => $this->dateTime(),
-            'updated_at' => $this->dateTime(),
+            'created_at' => $this->timestamp(),
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
         $this->createIndex('index_user_id','order','user_id');
         $this->createIndex('index_product_id','order','product_id');
