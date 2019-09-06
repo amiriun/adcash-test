@@ -37,7 +37,7 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'quantity', 'price'], 'integer'],
+            [['user_id', 'product_id', 'quantity', 'item_price', 'total_price'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['cloned_product_name'], 'string', 'max' => 40],
             [['cloned_user_fullname'], 'string', 'max' => 40],
@@ -56,7 +56,8 @@ class Order extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'product_id' => Yii::t('app', 'Product ID'),
             'quantity' => Yii::t('app', 'Quantity'),
-            'price' => Yii::t('app', 'Price'),
+            'item_price' => Yii::t('app', 'Price'),
+            'total_price' => Yii::t('app', 'Total price'),
             'cloned_product_name' => Yii::t('app', 'Cloned Product Name'),
             'cloned_user_fullname' => Yii::t('app', 'Cloned User Fullname'),
             'created_at' => Yii::t('app', 'Created At'),
