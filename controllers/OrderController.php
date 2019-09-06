@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
-use adcash\order\data_contracts\CreateOrderDTO;
-use adcash\order\exceptions\CreatingOrderException;
+use adcash\order\data_contracts\OrderDTO;
+use adcash\order\exceptions\OrderException;
+use adcash\order\repositories\UpdatingOrderRepository;
 use adcash\order\services\CreatingOrderService;
 use app\models\Order;
 use app\models\OrderSearch;
@@ -76,7 +77,7 @@ class OrderController extends Controller
      */
     public function actionCreate()
     {
-        $DTO = new CreateOrderDTO();
+        $DTO = new OrderDTO();
         $request = Yii::$app->request->post('OrderSearch');
         $DTO->productId = $request['product_id'];
         $DTO->userId = $request['user_id'];
@@ -84,7 +85,7 @@ class OrderController extends Controller
         $service = new CreatingOrderService($DTO);
         try {
             $service->create();
-        } catch (CreatingOrderException $e) {
+        } catch (OrderException $e) {
         } catch (\Exception $e) {
         }
 
@@ -102,6 +103,17 @@ class OrderController extends Controller
     {
         $model = $this->findModel($id);
 
+        $DTO = new OrderDTO();
+        $request = Yii::$app->request->post('OrderSearch');
+        $DTO->productId = $request['product_id'];
+        $DTO->userId = $request['user_id'];
+        $DTO->quantity = $request['quantity'];
+        $service = new UpdatingOrderRepository($DTO,$model);
+        try {
+            $service->update();
+        } catch (OrderException $e) {
+        } catch (\Exception $e) {
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }

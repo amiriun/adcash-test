@@ -5,15 +5,15 @@ use adcash\order\data_contracts\OrderDTO;
 use adcash\order\exceptions\OrderException;
 use adcash\order\repositories\CreatingOrderRepository;
 
-class CreatingOrderService
+class UpdatingOrderService
 {
-    private $createOrderDTO;
+    private $orderDTO;
 
     private $creatingRepository;
 
     public function __construct(OrderDTO $DTO)
     {
-        $this->createOrderDTO = $DTO;
+        $this->orderDTO = $DTO;
         $this->creatingRepository = new CreatingOrderRepository($DTO);
     }
 
@@ -21,11 +21,12 @@ class CreatingOrderService
      * @throws \Exception
      * @throws OrderException
      */
-    public function create(){
-        if($this->createOrderDTO->getProduct()->available_quantity < $this->createOrderDTO->quantity){
+    public function update(){
+
+        if($this->orderDTO->getProduct()->available_quantity < $this->orderDTO->quantity){
             throw new \Exception("The quantity of order is greater than the available quantities",422);
         }
 
-        $this->creatingRepository->create();
+        $this->creatingRepository->update();
     }
 }

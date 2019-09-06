@@ -1,13 +1,13 @@
 <?php
 namespace adcash\discount\services;
 
-use adcash\order\data_contracts\CreateOrderDTO;
+use adcash\order\data_contracts\OrderDTO;
 
 class DiscountCalculator
 {
     private $orderDTO;
 
-    public function __construct(CreateOrderDTO $DTO)
+    public function __construct(OrderDTO $DTO)
     {
         $this->orderDTO = $DTO;
     }

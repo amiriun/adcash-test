@@ -2,8 +2,8 @@
 namespace adcash\order\repositories;
 
 use adcash\discount\services\DiscountCalculator;
-use adcash\order\data_contracts\CreateOrderDTO;
-use adcash\order\exceptions\CreatingOrderException;
+use adcash\order\data_contracts\OrderDTO;
+use adcash\order\exceptions\OrderException;
 use app\models\Order;
 use app\models\Product;
 
@@ -13,14 +13,14 @@ class CreatingOrderRepository
 
     private $discountService;
 
-    public function __construct(CreateOrderDTO $DTO)
+    public function __construct(OrderDTO $DTO)
     {
         $this->createOrderDTO = $DTO;
         $this->discountService = new DiscountCalculator($this->createOrderDTO);
     }
 
     /**
-     * @throws \adcash\order\exceptions\CreatingOrderException
+     * @throws \adcash\order\exceptions\OrderException
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class CreatingOrderRepository
         $order->cloned_product_name = $this->createOrderDTO->getProduct()->name;
         $order->cloned_user_fullname = $this->createOrderDTO->getUser()->fullname;
         if (!$order->save()) {
-            throw new CreatingOrderException("There is a problem in saving the order",422);
+            throw new OrderException("There is a problem in saving the order",422);
         }
         $this->decreaseAvailableQuantitiesOfProduct($order->product,$order->quantity);
     }

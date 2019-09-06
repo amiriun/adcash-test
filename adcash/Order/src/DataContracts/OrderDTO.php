@@ -5,7 +5,7 @@ use app\models\Order;
 use app\models\Product;
 use app\models\User;
 
-class CreateOrderDTO
+class OrderDTO
 {
     public $productId;
     public $userId;
