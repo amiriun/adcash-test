@@ -76,8 +76,8 @@ class Order extends \yii\db\ActiveRecord
             'quantity' => Yii::t('app', 'Quantity'),
             'item_price' => Yii::t('app', 'Price'),
             'total_price' => Yii::t('app', 'Total price'),
-            'cloned_product_name' => Yii::t('app', 'Cloned Product Name'),
-            'cloned_user_fullname' => Yii::t('app', 'Cloned User Fullname'),
+            'cloned_product_name' => Yii::t('app', 'Product name'),
+            'cloned_user_fullname' => Yii::t('app', 'User fullname'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

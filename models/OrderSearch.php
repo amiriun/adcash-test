@@ -17,8 +17,10 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user_id', 'product_id', 'quantity', 'item_price', 'total_price', 'cloned_user_fullname'], 'integer'],
+            [['id', 'user_id', 'product_id', 'quantity', 'item_price', 'total_price'], 'integer'],
             [['cloned_product_name', 'created_at', 'updated_at'], 'safe'],
+            [['cloned_user_fullname'], 'string'],
+            [['cloned_product_name'], 'string'],
         ];
     }
 
