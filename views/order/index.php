@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -35,11 +35,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'cloned_user_fullname',
-            'cloned_product_name',
-            'quantity',
-            'price',
-            'created_at',
+            [
+                'attribute' => 'cloned_user_fullname',
+                'label' => 'User',
+            ],
+            [
+                'attribute' => 'cloned_product_name',
+                'label' => 'Product',
+            ],
+            [
+                'attribute' => 'quantity',
+                'label' => 'Quantity',
+                'filter'=>false,
+            ],
+            [
+                'attribute' => 'euroPrice',
+                'label' => 'Price'
+            ],
+            [
+                'attribute'=>'created_at',
+                'format'=>'datetime',
+                'label' => 'Date',
+                'filter'=>array(null=>"All time","ID1"=>"Today","ID2"=>"Last 7 days"),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
