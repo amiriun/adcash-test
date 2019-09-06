@@ -3,6 +3,8 @@
 
 * Discount rule is located in `params.php` and one can easily change anything in it when it is needed
 
+* For commiunication between different layers and regarding to `Dependency Inversion` I have used the DTOs(Data Transfer Object)
+
 * I have created my own folder with the name of `/adcash` in the root directory and have put my repositories and services on it.
 
 Here is the online demo link:
