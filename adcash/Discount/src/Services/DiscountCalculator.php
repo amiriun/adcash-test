@@ -31,6 +31,6 @@ class DiscountCalculator
      */
     private function calculateDiscountPrice($price, $percentDiscount)
     {
-        return $price * $percentDiscount;
+        return $price * $percentDiscount / 100;
     }
 }
