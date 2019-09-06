@@ -26,6 +26,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <?php $form = ActiveForm::begin(); ?>
     <?= $this->render('_form', [
         'model' => $model,
+        'form' => $form,
+        'userDataList' => $userDataList,
+        'productDataList' => $productDataList,
     ]) ?>
 
     <?php ActiveForm::end(); ?>

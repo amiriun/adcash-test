@@ -83,7 +83,7 @@ class OrderController extends Controller
         } catch (\Exception $e) {
         }
 
-        return $this->redirect('/');
+        return $this->redirect(['index']);
     }
 
     /**
@@ -98,11 +98,13 @@ class OrderController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'userDataList' => User::instance()->allInUsersForDropdownList(),
+            'productDataList' => Product::instance()->allInDropDownListFormat(),
         ]);
     }
 
