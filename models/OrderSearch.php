@@ -64,12 +64,22 @@ class OrderSearch extends Order
             'quantity' => $this->quantity,
             'item_price' => $this->item_price,
             'total_price' => $this->total_price,
-            'cloned_user_fullname' => $this->cloned_user_fullname,
-            'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'cloned_product_name', $this->cloned_product_name]);
+        $query->andFilterWhere(['like', 'cloned_user_fullname', $this->cloned_user_fullname]);
+
+        if($this->created_at == 'all_time'){
+            return $dataProvider;
+        }
+        if($this->created_at == 'today'){
+            $query->andFilterWhere(['>', 'created_at', date('Y-m-d 00:00:00')]);
+        }
+        if($this->created_at == '7days_ago'){
+            $query->andFilterWhere(['>', 'created_at', date('Y-m-d H:i:s', strtotime('-7 days', time()))]);
+        }
+
 
         return $dataProvider;
     }

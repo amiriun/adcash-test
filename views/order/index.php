@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'created_at',
                 'format'=>'datetime',
                 'label' => 'Date',
-                'filter'=>array(null=>"All time","ID1"=>"Today","ID2"=>"Last 7 days"),
+                'filter'=>array('all_time'=>"All time","today"=>"Today","7days_ago"=>"Last 7 days"),
             ],
 
             [
