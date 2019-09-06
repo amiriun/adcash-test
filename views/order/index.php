@@ -59,7 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>array(null=>"All time","ID1"=>"Today","ID2"=>"Last 7 days"),
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template'=>'{update} {delete}',
+            ],
         ],
     ]); ?>
 
