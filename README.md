@@ -3,6 +3,9 @@
 
 * Discount rule is located in `params.php` and one can easily change anything in it when it is needed
 
+Here is the online demo link:
+http://adcash.idea197.com/web/index.php?r=order/index
+
 ## Instalation:
 * First: configure the db file --> `config/db.php`
 * Second: `composer install`
