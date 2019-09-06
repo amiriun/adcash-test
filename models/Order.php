@@ -11,7 +11,8 @@ use Yii;
  * @property int $user_id
  * @property int $product_id
  * @property int $quantity
- * @property int $price
+ * @property int $item_price
+ * @property int $total_price
  * @property string $cloned_product_name
  * @property int $cloned_user_fullname
  * @property string $created_at
@@ -77,5 +78,9 @@ class Order extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getEuroPrice(){
+        return number_format((float)$this->total_price, 2, '.', '') . ' EUR';
     }
 }
